@@ -1,0 +1,631 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		33C6429717BB6D1700AB90A7 /* notes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C6429617BB6D1700AB90A7 /* notes.plist */; };
+		33C6429A17BB6D3F00AB90A7 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C6429917BB6D3F00AB90A7 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A808DF2217BE49A7002C2BC9 /* bgr-srch.png in Resources */ = {isa = PBXBuildFile; fileRef = A808DF2017BE49A7002C2BC9 /* bgr-srch.png */; };
+		A808DF2317BE49A7002C2BC9 /* bgr-srch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A808DF2117BE49A7002C2BC9 /* bgr-srch@2x.png */; };
+		A80941D517AA74B70038AB84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80941D417AA74B70038AB84 /* UIKit.framework */; };
+		A80941D717AA74B70038AB84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80941D617AA74B70038AB84 /* Foundation.framework */; };
+		A80941D917AA74B70038AB84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80941D817AA74B70038AB84 /* CoreGraphics.framework */; };
+		A80941DF17AA74B70038AB84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A80941DD17AA74B70038AB84 /* InfoPlist.strings */; };
+		A80941E117AA74B70038AB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A80941E017AA74B70038AB84 /* main.m */; };
+		A80941E517AA74B70038AB84 /* BNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A80941E417AA74B70038AB84 /* BNAppDelegate.m */; };
+		A80941E717AA74B70038AB84 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A80941E617AA74B70038AB84 /* Default.png */; };
+		A80941E917AA74B70038AB84 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80941E817AA74B70038AB84 /* Default@2x.png */; };
+		A80941EB17AA74B70038AB84 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80941EA17AA74B70038AB84 /* Default-568h@2x.png */; };
+		A80941EE17AA74B70038AB84 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80941EC17AA74B70038AB84 /* MainStoryboard_iPhone.storyboard */; };
+		A80941F117AA74B70038AB84 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80941EF17AA74B70038AB84 /* MainStoryboard_iPad.storyboard */; };
+		A80941FC17AA756B0038AB84 /* BNCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A80941FB17AA756B0038AB84 /* BNCalendarVC.m */; };
+		A80941FF17AA87150038AB84 /* BNDayColumnHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A80941FE17AA87150038AB84 /* BNDayColumnHeader.m */; };
+		A809420317AA8D6D0038AB84 /* BNTimeRowHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A809420217AA8D6D0038AB84 /* BNTimeRowHeader.m */; };
+		A809420617AA8F170038AB84 /* BNCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A809420517AA8F170038AB84 /* BNCalendarCell.m */; };
+		A809420917AA90F20038AB84 /* BNCalendarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A809420817AA90F20038AB84 /* BNCalendarItem.m */; };
+		A809420F17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A809420E17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.m */; };
+		A80B299B17C4A911007B34BE /* cni-note-0-bot.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B297F17C4A911007B34BE /* cni-note-0-bot.png */; };
+		A80B299C17C4A911007B34BE /* cni-note-0-bot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298017C4A911007B34BE /* cni-note-0-bot@2x.png */; };
+		A80B299D17C4A911007B34BE /* cni-note-0-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298117C4A911007B34BE /* cni-note-0-mid.png */; };
+		A80B299E17C4A911007B34BE /* cni-note-0-mid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298217C4A911007B34BE /* cni-note-0-mid@2x.png */; };
+		A80B299F17C4A911007B34BE /* cni-note-0-top.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298317C4A911007B34BE /* cni-note-0-top.png */; };
+		A80B29A017C4A911007B34BE /* cni-note-0-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298417C4A911007B34BE /* cni-note-0-top@2x.png */; };
+		A80B29A117C4A911007B34BE /* cni-note-1-bot.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298517C4A911007B34BE /* cni-note-1-bot.png */; };
+		A80B29A217C4A911007B34BE /* cni-note-1-bot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298617C4A911007B34BE /* cni-note-1-bot@2x.png */; };
+		A80B29A317C4A911007B34BE /* cni-note-1-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298717C4A911007B34BE /* cni-note-1-mid.png */; };
+		A80B29A417C4A911007B34BE /* cni-note-1-mid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298817C4A911007B34BE /* cni-note-1-mid@2x.png */; };
+		A80B29A517C4A911007B34BE /* cni-note-1-top.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298917C4A911007B34BE /* cni-note-1-top.png */; };
+		A80B29A617C4A911007B34BE /* cni-note-1-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298A17C4A911007B34BE /* cni-note-1-top@2x.png */; };
+		A80B29A717C4A911007B34BE /* cni-note-2-bot.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298B17C4A911007B34BE /* cni-note-2-bot.png */; };
+		A80B29A817C4A911007B34BE /* cni-note-2-bot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298C17C4A911007B34BE /* cni-note-2-bot@2x.png */; };
+		A80B29A917C4A911007B34BE /* cni-note-2-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298D17C4A911007B34BE /* cni-note-2-mid.png */; };
+		A80B29AA17C4A911007B34BE /* cni-note-2-mid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298E17C4A911007B34BE /* cni-note-2-mid@2x.png */; };
+		A80B29AB17C4A911007B34BE /* cni-note-2-top.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B298F17C4A911007B34BE /* cni-note-2-top.png */; };
+		A80B29AC17C4A911007B34BE /* cni-note-2-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299017C4A911007B34BE /* cni-note-2-top@2x.png */; };
+		A80B29AD17C4A911007B34BE /* cni_drug_dn.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299117C4A911007B34BE /* cni_drug_dn.png */; };
+		A80B29AE17C4A911007B34BE /* cni_drug_dn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299217C4A911007B34BE /* cni_drug_dn@2x.png */; };
+		A80B29AF17C4A911007B34BE /* cni_drug_up.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299317C4A911007B34BE /* cni_drug_up.png */; };
+		A80B29B017C4A911007B34BE /* cni_drug_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299417C4A911007B34BE /* cni_drug_up@2x.png */; };
+		A80B29B117C4A911007B34BE /* iphone-cni-note-bot.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299517C4A911007B34BE /* iphone-cni-note-bot.png */; };
+		A80B29B217C4A911007B34BE /* iphone-cni-note-bot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299617C4A911007B34BE /* iphone-cni-note-bot@2x.png */; };
+		A80B29B317C4A911007B34BE /* iphone-cni-note-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299717C4A911007B34BE /* iphone-cni-note-mid.png */; };
+		A80B29B417C4A911007B34BE /* iphone-cni-note-mid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299817C4A911007B34BE /* iphone-cni-note-mid@2x.png */; };
+		A80B29B517C4A911007B34BE /* iphone-cni-note-top.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299917C4A911007B34BE /* iphone-cni-note-top.png */; };
+		A80B29B617C4A911007B34BE /* iphone-cni-note-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A80B299A17C4A911007B34BE /* iphone-cni-note-top@2x.png */; };
+		A80E638317B285D000BF2236 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80E638217B285D000BF2236 /* QuartzCore.framework */; };
+		A80F57CE17B38E6D008EAFAA /* BNCalendarDraggingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A80F57CD17B38E6D008EAFAA /* BNCalendarDraggingView.m */; };
+		A81568A517C356240015F401 /* BNVerticalDayGridline.m in Sources */ = {isa = PBXBuildFile; fileRef = A81568A417C356240015F401 /* BNVerticalDayGridline.m */; };
+		A81568A717C356D60015F401 /* calendar_main_bgr.png in Resources */ = {isa = PBXBuildFile; fileRef = A81568A617C356D60015F401 /* calendar_main_bgr.png */; };
+		A81568AA17C357060015F401 /* BNHorizontalMinuteGridline.m in Sources */ = {isa = PBXBuildFile; fileRef = A81568A917C357060015F401 /* BNHorizontalMinuteGridline.m */; };
+		A81568AD17C383240015F401 /* BNWorkTimeDecorationLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A81568AC17C383240015F401 /* BNWorkTimeDecorationLayer.m */; };
+		A81568B017C3833E0015F401 /* BNLunchTimeDecorationLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A81568AF17C3833E0015F401 /* BNLunchTimeDecorationLayer.m */; };
+		A81568B317C384790015F401 /* BNCurrentDayDecorationLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A81568B217C384790015F401 /* BNCurrentDayDecorationLayer.m */; };
+		A836B30617CCE26800DA69BC /* notes2.plist in Resources */ = {isa = PBXBuildFile; fileRef = A836B30517CCE26800DA69BC /* notes2.plist */; };
+		A836B30C17CCE76400DA69BC /* BNCurrentTimeIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A836B30B17CCE76400DA69BC /* BNCurrentTimeIndicator.m */; };
+		A8E972B517AFD1E800C54CF0 /* BNTimeRowHeaderBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E972B417AFD1E800C54CF0 /* BNTimeRowHeaderBackground.m */; };
+		A8E972B817AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E972B717AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.m */; };
+		A8E972BB17AFD21400C54CF0 /* BNHorizontalHourGridline.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E972BA17AFD21400C54CF0 /* BNHorizontalHourGridline.m */; };
+		A8E972BE17AFD23A00C54CF0 /* BNCurrentTimeGridline.m in Sources */ = {isa = PBXBuildFile; fileRef = A8E972BD17AFD23A00C54CF0 /* BNCurrentTimeGridline.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		33C6429617BB6D1700AB90A7 /* notes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = notes.plist; sourceTree = "<group>"; };
+		33C6429817BB6D3F00AB90A7 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		33C6429917BB6D3F00AB90A7 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		A808DF2017BE49A7002C2BC9 /* bgr-srch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgr-srch.png"; sourceTree = "<group>"; };
+		A808DF2117BE49A7002C2BC9 /* bgr-srch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgr-srch@2x.png"; sourceTree = "<group>"; };
+		A80941D117AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BNCalendar1CollectionViewStoryboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A80941D417AA74B70038AB84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A80941D617AA74B70038AB84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A80941D817AA74B70038AB84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A80941DC17AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BNCalendar1CollectionViewStoryboard-Info.plist"; sourceTree = "<group>"; };
+		A80941DE17AA74B70038AB84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A80941E017AA74B70038AB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A80941E217AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BNCalendar1CollectionViewStoryboard-Prefix.pch"; sourceTree = "<group>"; };
+		A80941E317AA74B70038AB84 /* BNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNAppDelegate.h; sourceTree = "<group>"; };
+		A80941E417AA74B70038AB84 /* BNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNAppDelegate.m; sourceTree = "<group>"; };
+		A80941E617AA74B70038AB84 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A80941E817AA74B70038AB84 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A80941EA17AA74B70038AB84 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A80941ED17AA74B70038AB84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		A80941F017AA74B70038AB84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		A80941FA17AA756B0038AB84 /* BNCalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCalendarVC.h; sourceTree = "<group>"; };
+		A80941FB17AA756B0038AB84 /* BNCalendarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCalendarVC.m; sourceTree = "<group>"; };
+		A80941FD17AA87150038AB84 /* BNDayColumnHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDayColumnHeader.h; sourceTree = "<group>"; };
+		A80941FE17AA87150038AB84 /* BNDayColumnHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDayColumnHeader.m; sourceTree = "<group>"; };
+		A809420117AA8D6D0038AB84 /* BNTimeRowHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNTimeRowHeader.h; sourceTree = "<group>"; };
+		A809420217AA8D6D0038AB84 /* BNTimeRowHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNTimeRowHeader.m; sourceTree = "<group>"; };
+		A809420417AA8F170038AB84 /* BNCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCalendarCell.h; sourceTree = "<group>"; };
+		A809420517AA8F170038AB84 /* BNCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCalendarCell.m; sourceTree = "<group>"; };
+		A809420717AA90F20038AB84 /* BNCalendarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCalendarItem.h; sourceTree = "<group>"; };
+		A809420817AA90F20038AB84 /* BNCalendarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCalendarItem.m; sourceTree = "<group>"; };
+		A809420D17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCollectionViewCalendarLayout.h; sourceTree = "<group>"; };
+		A809420E17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCollectionViewCalendarLayout.m; sourceTree = "<group>"; };
+		A80B297F17C4A911007B34BE /* cni-note-0-bot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-0-bot.png"; sourceTree = "<group>"; };
+		A80B298017C4A911007B34BE /* cni-note-0-bot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-0-bot@2x.png"; sourceTree = "<group>"; };
+		A80B298117C4A911007B34BE /* cni-note-0-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-0-mid.png"; sourceTree = "<group>"; };
+		A80B298217C4A911007B34BE /* cni-note-0-mid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-0-mid@2x.png"; sourceTree = "<group>"; };
+		A80B298317C4A911007B34BE /* cni-note-0-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-0-top.png"; sourceTree = "<group>"; };
+		A80B298417C4A911007B34BE /* cni-note-0-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-0-top@2x.png"; sourceTree = "<group>"; };
+		A80B298517C4A911007B34BE /* cni-note-1-bot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-1-bot.png"; sourceTree = "<group>"; };
+		A80B298617C4A911007B34BE /* cni-note-1-bot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-1-bot@2x.png"; sourceTree = "<group>"; };
+		A80B298717C4A911007B34BE /* cni-note-1-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-1-mid.png"; sourceTree = "<group>"; };
+		A80B298817C4A911007B34BE /* cni-note-1-mid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-1-mid@2x.png"; sourceTree = "<group>"; };
+		A80B298917C4A911007B34BE /* cni-note-1-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-1-top.png"; sourceTree = "<group>"; };
+		A80B298A17C4A911007B34BE /* cni-note-1-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-1-top@2x.png"; sourceTree = "<group>"; };
+		A80B298B17C4A911007B34BE /* cni-note-2-bot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-2-bot.png"; sourceTree = "<group>"; };
+		A80B298C17C4A911007B34BE /* cni-note-2-bot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-2-bot@2x.png"; sourceTree = "<group>"; };
+		A80B298D17C4A911007B34BE /* cni-note-2-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-2-mid.png"; sourceTree = "<group>"; };
+		A80B298E17C4A911007B34BE /* cni-note-2-mid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-2-mid@2x.png"; sourceTree = "<group>"; };
+		A80B298F17C4A911007B34BE /* cni-note-2-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-2-top.png"; sourceTree = "<group>"; };
+		A80B299017C4A911007B34BE /* cni-note-2-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni-note-2-top@2x.png"; sourceTree = "<group>"; };
+		A80B299117C4A911007B34BE /* cni_drug_dn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cni_drug_dn.png; sourceTree = "<group>"; };
+		A80B299217C4A911007B34BE /* cni_drug_dn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni_drug_dn@2x.png"; sourceTree = "<group>"; };
+		A80B299317C4A911007B34BE /* cni_drug_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cni_drug_up.png; sourceTree = "<group>"; };
+		A80B299417C4A911007B34BE /* cni_drug_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cni_drug_up@2x.png"; sourceTree = "<group>"; };
+		A80B299517C4A911007B34BE /* iphone-cni-note-bot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-cni-note-bot.png"; sourceTree = "<group>"; };
+		A80B299617C4A911007B34BE /* iphone-cni-note-bot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-cni-note-bot@2x.png"; sourceTree = "<group>"; };
+		A80B299717C4A911007B34BE /* iphone-cni-note-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-cni-note-mid.png"; sourceTree = "<group>"; };
+		A80B299817C4A911007B34BE /* iphone-cni-note-mid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-cni-note-mid@2x.png"; sourceTree = "<group>"; };
+		A80B299917C4A911007B34BE /* iphone-cni-note-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-cni-note-top.png"; sourceTree = "<group>"; };
+		A80B299A17C4A911007B34BE /* iphone-cni-note-top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-cni-note-top@2x.png"; sourceTree = "<group>"; };
+		A80E638217B285D000BF2236 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A80F57CC17B38E6D008EAFAA /* BNCalendarDraggingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCalendarDraggingView.h; sourceTree = "<group>"; };
+		A80F57CD17B38E6D008EAFAA /* BNCalendarDraggingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCalendarDraggingView.m; sourceTree = "<group>"; };
+		A81568A317C356240015F401 /* BNVerticalDayGridline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNVerticalDayGridline.h; sourceTree = "<group>"; };
+		A81568A417C356240015F401 /* BNVerticalDayGridline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNVerticalDayGridline.m; sourceTree = "<group>"; };
+		A81568A617C356D60015F401 /* calendar_main_bgr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_main_bgr.png; sourceTree = "<group>"; };
+		A81568A817C357050015F401 /* BNHorizontalMinuteGridline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNHorizontalMinuteGridline.h; sourceTree = "<group>"; };
+		A81568A917C357060015F401 /* BNHorizontalMinuteGridline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNHorizontalMinuteGridline.m; sourceTree = "<group>"; };
+		A81568AB17C383240015F401 /* BNWorkTimeDecorationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNWorkTimeDecorationLayer.h; sourceTree = "<group>"; };
+		A81568AC17C383240015F401 /* BNWorkTimeDecorationLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNWorkTimeDecorationLayer.m; sourceTree = "<group>"; };
+		A81568AE17C3833E0015F401 /* BNLunchTimeDecorationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNLunchTimeDecorationLayer.h; sourceTree = "<group>"; };
+		A81568AF17C3833E0015F401 /* BNLunchTimeDecorationLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNLunchTimeDecorationLayer.m; sourceTree = "<group>"; };
+		A81568B117C384790015F401 /* BNCurrentDayDecorationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCurrentDayDecorationLayer.h; sourceTree = "<group>"; };
+		A81568B217C384790015F401 /* BNCurrentDayDecorationLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCurrentDayDecorationLayer.m; sourceTree = "<group>"; };
+		A836B30517CCE26800DA69BC /* notes2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = notes2.plist; sourceTree = "<group>"; };
+		A836B30A17CCE76400DA69BC /* BNCurrentTimeIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCurrentTimeIndicator.h; sourceTree = "<group>"; };
+		A836B30B17CCE76400DA69BC /* BNCurrentTimeIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCurrentTimeIndicator.m; sourceTree = "<group>"; };
+		A8E972B317AFD1E800C54CF0 /* BNTimeRowHeaderBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNTimeRowHeaderBackground.h; sourceTree = "<group>"; };
+		A8E972B417AFD1E800C54CF0 /* BNTimeRowHeaderBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNTimeRowHeaderBackground.m; sourceTree = "<group>"; };
+		A8E972B617AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNDayColumnHeaderBackground.h; sourceTree = "<group>"; };
+		A8E972B717AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNDayColumnHeaderBackground.m; sourceTree = "<group>"; };
+		A8E972B917AFD21400C54CF0 /* BNHorizontalHourGridline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNHorizontalHourGridline.h; sourceTree = "<group>"; };
+		A8E972BA17AFD21400C54CF0 /* BNHorizontalHourGridline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNHorizontalHourGridline.m; sourceTree = "<group>"; };
+		A8E972BC17AFD23A00C54CF0 /* BNCurrentTimeGridline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCurrentTimeGridline.h; sourceTree = "<group>"; };
+		A8E972BD17AFD23A00C54CF0 /* BNCurrentTimeGridline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCurrentTimeGridline.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A80941CE17AA74B70038AB84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80E638317B285D000BF2236 /* QuartzCore.framework in Frameworks */,
+				A80941D517AA74B70038AB84 /* UIKit.framework in Frameworks */,
+				A80941D717AA74B70038AB84 /* Foundation.framework in Frameworks */,
+				A80941D917AA74B70038AB84 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A808DF1F17BE4979002C2BC9 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A80B297E17C4A901007B34BE /* CalendarItems */,
+				A81568A617C356D60015F401 /* calendar_main_bgr.png */,
+				A808DF2017BE49A7002C2BC9 /* bgr-srch.png */,
+				A808DF2117BE49A7002C2BC9 /* bgr-srch@2x.png */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		A80941C817AA74B70038AB84 = {
+			isa = PBXGroup;
+			children = (
+				33C6429817BB6D3F00AB90A7 /* JSONKit.h */,
+				33C6429917BB6D3F00AB90A7 /* JSONKit.m */,
+				A836B30517CCE26800DA69BC /* notes2.plist */,
+				33C6429617BB6D1700AB90A7 /* notes.plist */,
+				A80941DA17AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard */,
+				A80941D317AA74B70038AB84 /* Frameworks */,
+				A80941D217AA74B70038AB84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A80941D217AA74B70038AB84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A80941D117AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A80941D317AA74B70038AB84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A80E638217B285D000BF2236 /* QuartzCore.framework */,
+				A80941D417AA74B70038AB84 /* UIKit.framework */,
+				A80941D617AA74B70038AB84 /* Foundation.framework */,
+				A80941D817AA74B70038AB84 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A80941DA17AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				A808DF1F17BE4979002C2BC9 /* Shared */,
+				A80941E317AA74B70038AB84 /* BNAppDelegate.h */,
+				A80941E417AA74B70038AB84 /* BNAppDelegate.m */,
+				A80941FA17AA756B0038AB84 /* BNCalendarVC.h */,
+				A80941FB17AA756B0038AB84 /* BNCalendarVC.m */,
+				A80941EC17AA74B70038AB84 /* MainStoryboard_iPhone.storyboard */,
+				A809420C17AA9B300038AB84 /* Collection View Layout */,
+				A809420B17AA94690038AB84 /* Collection View Cell */,
+				A809420A17AA945B0038AB84 /* Model */,
+				A809420017AA886C0038AB84 /* Collection View Reusable View */,
+				A80941EF17AA74B70038AB84 /* MainStoryboard_iPad.storyboard */,
+				A80941DB17AA74B70038AB84 /* Supporting Files */,
+			);
+			path = BNCalendar1CollectionViewStoryboard;
+			sourceTree = "<group>";
+		};
+		A80941DB17AA74B70038AB84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A80941DC17AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard-Info.plist */,
+				A80941DD17AA74B70038AB84 /* InfoPlist.strings */,
+				A80941E017AA74B70038AB84 /* main.m */,
+				A80941E217AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard-Prefix.pch */,
+				A80941E617AA74B70038AB84 /* Default.png */,
+				A80941E817AA74B70038AB84 /* Default@2x.png */,
+				A80941EA17AA74B70038AB84 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A809420017AA886C0038AB84 /* Collection View Reusable View */ = {
+			isa = PBXGroup;
+			children = (
+				A81568B717C384B70015F401 /* BackgroundDecoration */,
+				A81568B517C384990015F401 /* GridLine */,
+				A81568B417C384840015F401 /* Header */,
+			);
+			name = "Collection View Reusable View";
+			sourceTree = "<group>";
+		};
+		A809420A17AA945B0038AB84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A809420717AA90F20038AB84 /* BNCalendarItem.h */,
+				A809420817AA90F20038AB84 /* BNCalendarItem.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A809420B17AA94690038AB84 /* Collection View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A80F57CC17B38E6D008EAFAA /* BNCalendarDraggingView.h */,
+				A80F57CD17B38E6D008EAFAA /* BNCalendarDraggingView.m */,
+				A809420417AA8F170038AB84 /* BNCalendarCell.h */,
+				A809420517AA8F170038AB84 /* BNCalendarCell.m */,
+			);
+			name = "Collection View Cell";
+			sourceTree = "<group>";
+		};
+		A809420C17AA9B300038AB84 /* Collection View Layout */ = {
+			isa = PBXGroup;
+			children = (
+				A809420D17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.h */,
+				A809420E17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.m */,
+			);
+			name = "Collection View Layout";
+			sourceTree = "<group>";
+		};
+		A80B297E17C4A901007B34BE /* CalendarItems */ = {
+			isa = PBXGroup;
+			children = (
+				A80B297F17C4A911007B34BE /* cni-note-0-bot.png */,
+				A80B298017C4A911007B34BE /* cni-note-0-bot@2x.png */,
+				A80B298117C4A911007B34BE /* cni-note-0-mid.png */,
+				A80B298217C4A911007B34BE /* cni-note-0-mid@2x.png */,
+				A80B298317C4A911007B34BE /* cni-note-0-top.png */,
+				A80B298417C4A911007B34BE /* cni-note-0-top@2x.png */,
+				A80B298517C4A911007B34BE /* cni-note-1-bot.png */,
+				A80B298617C4A911007B34BE /* cni-note-1-bot@2x.png */,
+				A80B298717C4A911007B34BE /* cni-note-1-mid.png */,
+				A80B298817C4A911007B34BE /* cni-note-1-mid@2x.png */,
+				A80B298917C4A911007B34BE /* cni-note-1-top.png */,
+				A80B298A17C4A911007B34BE /* cni-note-1-top@2x.png */,
+				A80B298B17C4A911007B34BE /* cni-note-2-bot.png */,
+				A80B298C17C4A911007B34BE /* cni-note-2-bot@2x.png */,
+				A80B298D17C4A911007B34BE /* cni-note-2-mid.png */,
+				A80B298E17C4A911007B34BE /* cni-note-2-mid@2x.png */,
+				A80B298F17C4A911007B34BE /* cni-note-2-top.png */,
+				A80B299017C4A911007B34BE /* cni-note-2-top@2x.png */,
+				A80B299117C4A911007B34BE /* cni_drug_dn.png */,
+				A80B299217C4A911007B34BE /* cni_drug_dn@2x.png */,
+				A80B299317C4A911007B34BE /* cni_drug_up.png */,
+				A80B299417C4A911007B34BE /* cni_drug_up@2x.png */,
+				A80B299517C4A911007B34BE /* iphone-cni-note-bot.png */,
+				A80B299617C4A911007B34BE /* iphone-cni-note-bot@2x.png */,
+				A80B299717C4A911007B34BE /* iphone-cni-note-mid.png */,
+				A80B299817C4A911007B34BE /* iphone-cni-note-mid@2x.png */,
+				A80B299917C4A911007B34BE /* iphone-cni-note-top.png */,
+				A80B299A17C4A911007B34BE /* iphone-cni-note-top@2x.png */,
+			);
+			name = CalendarItems;
+			sourceTree = "<group>";
+		};
+		A81568B417C384840015F401 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				A836B30A17CCE76400DA69BC /* BNCurrentTimeIndicator.h */,
+				A836B30B17CCE76400DA69BC /* BNCurrentTimeIndicator.m */,
+				A80941FD17AA87150038AB84 /* BNDayColumnHeader.h */,
+				A80941FE17AA87150038AB84 /* BNDayColumnHeader.m */,
+				A809420117AA8D6D0038AB84 /* BNTimeRowHeader.h */,
+				A809420217AA8D6D0038AB84 /* BNTimeRowHeader.m */,
+				A8E972B317AFD1E800C54CF0 /* BNTimeRowHeaderBackground.h */,
+				A8E972B417AFD1E800C54CF0 /* BNTimeRowHeaderBackground.m */,
+				A8E972B617AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.h */,
+				A8E972B717AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.m */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		A81568B517C384990015F401 /* GridLine */ = {
+			isa = PBXGroup;
+			children = (
+				A8E972B917AFD21400C54CF0 /* BNHorizontalHourGridline.h */,
+				A8E972BA17AFD21400C54CF0 /* BNHorizontalHourGridline.m */,
+				A81568A817C357050015F401 /* BNHorizontalMinuteGridline.h */,
+				A81568A917C357060015F401 /* BNHorizontalMinuteGridline.m */,
+				A81568A317C356240015F401 /* BNVerticalDayGridline.h */,
+				A81568A417C356240015F401 /* BNVerticalDayGridline.m */,
+				A8E972BC17AFD23A00C54CF0 /* BNCurrentTimeGridline.h */,
+				A8E972BD17AFD23A00C54CF0 /* BNCurrentTimeGridline.m */,
+			);
+			name = GridLine;
+			sourceTree = "<group>";
+		};
+		A81568B717C384B70015F401 /* BackgroundDecoration */ = {
+			isa = PBXGroup;
+			children = (
+				A81568AB17C383240015F401 /* BNWorkTimeDecorationLayer.h */,
+				A81568AC17C383240015F401 /* BNWorkTimeDecorationLayer.m */,
+				A81568AE17C3833E0015F401 /* BNLunchTimeDecorationLayer.h */,
+				A81568AF17C3833E0015F401 /* BNLunchTimeDecorationLayer.m */,
+				A81568B117C384790015F401 /* BNCurrentDayDecorationLayer.h */,
+				A81568B217C384790015F401 /* BNCurrentDayDecorationLayer.m */,
+			);
+			name = BackgroundDecoration;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A80941D017AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A80941F717AA74B70038AB84 /* Build configuration list for PBXNativeTarget "BNCalendar1CollectionViewStoryboard" */;
+			buildPhases = (
+				A80941CD17AA74B70038AB84 /* Sources */,
+				A80941CE17AA74B70038AB84 /* Frameworks */,
+				A80941CF17AA74B70038AB84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BNCalendar1CollectionViewStoryboard;
+			productName = BNCalendar1CollectionViewStoryboard;
+			productReference = A80941D117AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A80941C917AA74B70038AB84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BN;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Alexander Spiridonov";
+			};
+			buildConfigurationList = A80941CC17AA74B70038AB84 /* Build configuration list for PBXProject "BNCalendar1CollectionViewStoryboard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A80941C817AA74B70038AB84;
+			productRefGroup = A80941D217AA74B70038AB84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A80941D017AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A80941CF17AA74B70038AB84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80941DF17AA74B70038AB84 /* InfoPlist.strings in Resources */,
+				A80941E717AA74B70038AB84 /* Default.png in Resources */,
+				A80941E917AA74B70038AB84 /* Default@2x.png in Resources */,
+				A80941EB17AA74B70038AB84 /* Default-568h@2x.png in Resources */,
+				A80941EE17AA74B70038AB84 /* MainStoryboard_iPhone.storyboard in Resources */,
+				A80941F117AA74B70038AB84 /* MainStoryboard_iPad.storyboard in Resources */,
+				33C6429717BB6D1700AB90A7 /* notes.plist in Resources */,
+				A808DF2217BE49A7002C2BC9 /* bgr-srch.png in Resources */,
+				A808DF2317BE49A7002C2BC9 /* bgr-srch@2x.png in Resources */,
+				A81568A717C356D60015F401 /* calendar_main_bgr.png in Resources */,
+				A80B299B17C4A911007B34BE /* cni-note-0-bot.png in Resources */,
+				A80B299C17C4A911007B34BE /* cni-note-0-bot@2x.png in Resources */,
+				A80B299D17C4A911007B34BE /* cni-note-0-mid.png in Resources */,
+				A80B299E17C4A911007B34BE /* cni-note-0-mid@2x.png in Resources */,
+				A80B299F17C4A911007B34BE /* cni-note-0-top.png in Resources */,
+				A80B29A017C4A911007B34BE /* cni-note-0-top@2x.png in Resources */,
+				A80B29A117C4A911007B34BE /* cni-note-1-bot.png in Resources */,
+				A80B29A217C4A911007B34BE /* cni-note-1-bot@2x.png in Resources */,
+				A80B29A317C4A911007B34BE /* cni-note-1-mid.png in Resources */,
+				A80B29A417C4A911007B34BE /* cni-note-1-mid@2x.png in Resources */,
+				A80B29A517C4A911007B34BE /* cni-note-1-top.png in Resources */,
+				A80B29A617C4A911007B34BE /* cni-note-1-top@2x.png in Resources */,
+				A80B29A717C4A911007B34BE /* cni-note-2-bot.png in Resources */,
+				A80B29A817C4A911007B34BE /* cni-note-2-bot@2x.png in Resources */,
+				A80B29A917C4A911007B34BE /* cni-note-2-mid.png in Resources */,
+				A80B29AA17C4A911007B34BE /* cni-note-2-mid@2x.png in Resources */,
+				A80B29AB17C4A911007B34BE /* cni-note-2-top.png in Resources */,
+				A80B29AC17C4A911007B34BE /* cni-note-2-top@2x.png in Resources */,
+				A80B29AD17C4A911007B34BE /* cni_drug_dn.png in Resources */,
+				A80B29AE17C4A911007B34BE /* cni_drug_dn@2x.png in Resources */,
+				A80B29AF17C4A911007B34BE /* cni_drug_up.png in Resources */,
+				A80B29B017C4A911007B34BE /* cni_drug_up@2x.png in Resources */,
+				A80B29B117C4A911007B34BE /* iphone-cni-note-bot.png in Resources */,
+				A80B29B217C4A911007B34BE /* iphone-cni-note-bot@2x.png in Resources */,
+				A80B29B317C4A911007B34BE /* iphone-cni-note-mid.png in Resources */,
+				A80B29B417C4A911007B34BE /* iphone-cni-note-mid@2x.png in Resources */,
+				A80B29B517C4A911007B34BE /* iphone-cni-note-top.png in Resources */,
+				A80B29B617C4A911007B34BE /* iphone-cni-note-top@2x.png in Resources */,
+				A836B30617CCE26800DA69BC /* notes2.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A80941CD17AA74B70038AB84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A80941E117AA74B70038AB84 /* main.m in Sources */,
+				A80941E517AA74B70038AB84 /* BNAppDelegate.m in Sources */,
+				A80941FC17AA756B0038AB84 /* BNCalendarVC.m in Sources */,
+				A80941FF17AA87150038AB84 /* BNDayColumnHeader.m in Sources */,
+				A809420317AA8D6D0038AB84 /* BNTimeRowHeader.m in Sources */,
+				A809420617AA8F170038AB84 /* BNCalendarCell.m in Sources */,
+				A809420917AA90F20038AB84 /* BNCalendarItem.m in Sources */,
+				A809420F17AA9BC80038AB84 /* BNCollectionViewCalendarLayout.m in Sources */,
+				A8E972B517AFD1E800C54CF0 /* BNTimeRowHeaderBackground.m in Sources */,
+				A8E972B817AFD1FC00C54CF0 /* BNDayColumnHeaderBackground.m in Sources */,
+				A8E972BB17AFD21400C54CF0 /* BNHorizontalHourGridline.m in Sources */,
+				A8E972BE17AFD23A00C54CF0 /* BNCurrentTimeGridline.m in Sources */,
+				A80F57CE17B38E6D008EAFAA /* BNCalendarDraggingView.m in Sources */,
+				33C6429A17BB6D3F00AB90A7 /* JSONKit.m in Sources */,
+				A81568A517C356240015F401 /* BNVerticalDayGridline.m in Sources */,
+				A81568AA17C357060015F401 /* BNHorizontalMinuteGridline.m in Sources */,
+				A81568AD17C383240015F401 /* BNWorkTimeDecorationLayer.m in Sources */,
+				A81568B017C3833E0015F401 /* BNLunchTimeDecorationLayer.m in Sources */,
+				A81568B317C384790015F401 /* BNCurrentDayDecorationLayer.m in Sources */,
+				A836B30C17CCE76400DA69BC /* BNCurrentTimeIndicator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A80941DD17AA74B70038AB84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A80941DE17AA74B70038AB84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A80941EC17AA74B70038AB84 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A80941ED17AA74B70038AB84 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		A80941EF17AA74B70038AB84 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A80941F017AA74B70038AB84 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A80941F517AA74B70038AB84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A80941F617AA74B70038AB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A80941F817AA74B70038AB84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BNCalendar1CollectionViewStoryboard/BNCalendar1CollectionViewStoryboard-Prefix.pch";
+				INFOPLIST_FILE = "BNCalendar1CollectionViewStoryboard/BNCalendar1CollectionViewStoryboard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A80941F917AA74B70038AB84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BNCalendar1CollectionViewStoryboard/BNCalendar1CollectionViewStoryboard-Prefix.pch";
+				INFOPLIST_FILE = "BNCalendar1CollectionViewStoryboard/BNCalendar1CollectionViewStoryboard-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A80941CC17AA74B70038AB84 /* Build configuration list for PBXProject "BNCalendar1CollectionViewStoryboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80941F517AA74B70038AB84 /* Debug */,
+				A80941F617AA74B70038AB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A80941F717AA74B70038AB84 /* Build configuration list for PBXNativeTarget "BNCalendar1CollectionViewStoryboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80941F817AA74B70038AB84 /* Debug */,
+				A80941F917AA74B70038AB84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A80941C917AA74B70038AB84 /* Project object */;
+}
