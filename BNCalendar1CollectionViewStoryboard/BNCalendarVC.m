@@ -25,6 +25,7 @@
 #import "BNLunchTimeDecorationLayer.h"
 #import "BNCurrentDayDecorationLayer.h"
 #import "BNCurrentTimeIndicator.h"
+#import "BNMonthCalendarVC.h"
 
 NSString * const BNCalendarCellReuseIdentifier = @"BNCalendarCellReuseIdentifier";
 NSString * const BNDayColumnHeaderReuseIdentifier = @"BNDayColumnHeaderReuseIdentifier";
@@ -50,6 +51,7 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
 @property (nonatomic, assign) CGFloat scrollRateY;
 @property (nonatomic, strong) NSTimer *scrollingTimer;
 @property (nonatomic, strong) NSTimer *saveTimer;
+@property (nonatomic, strong) BNMonthCalendarVC *monthCalendar;
 @end
 
 @implementation BNCalendarVC
@@ -108,6 +110,20 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
     UIImage *bgr = [UIImage imageNamed:@"calendar_main_bgr"];
     self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:bgr];
     self.collectionView.backgroundView.contentMode = UIViewContentModeTopLeft;
+    
+    
+    UIStoryboard * mainSB = [UIStoryboard storyboardWithName:MainStoryboard bundle:nil];
+    
+    
+    self.monthCalendar = [mainSB instantiateViewControllerWithIdentifier:@"BNMonthCalendarVC"];
+    
+    [self.view addSubview:self.monthCalendar.view];
+    CGRect monthFrame = self.monthCalendar.view.frame;
+    monthFrame.origin.x = 0;
+    monthFrame.origin.y = 0;
+    //monthFrame.size.height = 320;
+    // monthFrame.size.width = 320;
+    self.monthCalendar.view.frame = monthFrame;
 }
 
 - (void)didReceiveMemoryWarning

@@ -38,7 +38,7 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     [self.collectionView setCollectionViewLayout:[[BNMonthCalendarLayout alloc] init]];
     
 	// Do any additional setup after loading the view.
-    self.collectionView.backgroundColor = [UIColor grayColor];
+    //self.collectionView.backgroundColor = [UIColor grayColor];
     [self.collectionView setPagingEnabled:YES];
     //регистрация классов
     [self.collectionView registerClass:[BNMonthCalendarDayCell class] forCellWithReuseIdentifier:BNMonthCalendarCellReuseIdentifier];
@@ -189,7 +189,6 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     BNMonthCalendarDayCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:BNMonthCalendarCellReuseIdentifier forIndexPath:indexPath];
     NSArray * arr = self.dictDaysOfMonths[self.arrMonths[indexPath.section]];
     cell.dayTextLabel.text = arr[indexPath.item];
-    cell.backgroundColor = [UIColor whiteColor];
    /*
     int start = [self.dictIndexStartEndMonths[self.arrMonths[indexPath.section]][0] intValue];
     int end = [self.dictIndexStartEndMonths[self.arrMonths[indexPath.section]][1] intValue];

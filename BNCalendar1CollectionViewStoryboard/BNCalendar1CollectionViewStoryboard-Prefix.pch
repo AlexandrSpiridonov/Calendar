@@ -11,4 +11,11 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+#ifndef iPhone
+#define iPhone  (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #endif
+
+#define MainStoryboard iPhone?@"MainStoryboard_iPhone":@"MainStoryboard_iPad"
+#endif
+
