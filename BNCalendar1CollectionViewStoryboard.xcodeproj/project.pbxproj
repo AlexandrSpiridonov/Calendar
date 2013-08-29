@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		33C6429717BB6D1700AB90A7 /* notes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33C6429617BB6D1700AB90A7 /* notes.plist */; };
 		33C6429A17BB6D3F00AB90A7 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C6429917BB6D3F00AB90A7 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A803BD5017CF8DFB00941FFC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A803BD4F17CF8DFB00941FFC /* .gitignore */; };
+		A803BD5217CF8F0200941FFC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A803BD5117CF8F0200941FFC /* .gitignore */; };
 		A808DF2217BE49A7002C2BC9 /* bgr-srch.png in Resources */ = {isa = PBXBuildFile; fileRef = A808DF2017BE49A7002C2BC9 /* bgr-srch.png */; };
 		A808DF2317BE49A7002C2BC9 /* bgr-srch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A808DF2117BE49A7002C2BC9 /* bgr-srch@2x.png */; };
 		A80941D517AA74B70038AB84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A80941D417AA74B70038AB84 /* UIKit.framework */; };
@@ -77,7 +77,7 @@
 		33C6429617BB6D1700AB90A7 /* notes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = notes.plist; sourceTree = "<group>"; };
 		33C6429817BB6D3F00AB90A7 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		33C6429917BB6D3F00AB90A7 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		A803BD4F17CF8DFB00941FFC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A803BD5117CF8F0200941FFC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A808DF2017BE49A7002C2BC9 /* bgr-srch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgr-srch.png"; sourceTree = "<group>"; };
 		A808DF2117BE49A7002C2BC9 /* bgr-srch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgr-srch@2x.png"; sourceTree = "<group>"; };
 		A80941D117AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BNCalendar1CollectionViewStoryboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,8 +193,8 @@
 			children = (
 				33C6429817BB6D3F00AB90A7 /* JSONKit.h */,
 				33C6429917BB6D3F00AB90A7 /* JSONKit.m */,
+				A803BD5117CF8F0200941FFC /* .gitignore */,
 				A836B30517CCE26800DA69BC /* notes2.plist */,
-				A803BD4F17CF8DFB00941FFC /* .gitignore */,
 				33C6429617BB6D1700AB90A7 /* notes.plist */,
 				A80941DA17AA74B70038AB84 /* BNCalendar1CollectionViewStoryboard */,
 				A80941D317AA74B70038AB84 /* Frameworks */,
@@ -464,7 +464,7 @@
 				A80B29B517C4A911007B34BE /* iphone-cni-note-top.png in Resources */,
 				A80B29B617C4A911007B34BE /* iphone-cni-note-top@2x.png in Resources */,
 				A836B30617CCE26800DA69BC /* notes2.plist in Resources */,
-				A803BD5017CF8DFB00941FFC /* .gitignore in Resources */,
+				A803BD5217CF8F0200941FFC /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
