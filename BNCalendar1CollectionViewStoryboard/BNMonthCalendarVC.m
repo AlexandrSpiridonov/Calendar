@@ -26,6 +26,7 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
 @property (nonatomic, strong) NSCalendar *calendar;
 @property (nonatomic, strong) NSDate *fromDate;
 @property (nonatomic, strong) NSDate *toDate;
+@property (nonatomic,strong) UIPanGestureRecognizer *pan;
 
 @end
 
@@ -57,6 +58,16 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     [dateComponents setMonth: (monthNow+6)];
     self.toDate = [self.calendar dateFromComponents:dateComponents];
     [self loadData];
+    
+    CGRect monthFrame = self.view.frame;
+    monthFrame.origin.x = 0;
+    monthFrame.origin.y = -self.view.frame.size.height;
+    self.view.frame = monthFrame;
+    
+    ///перетаскивание с верху
+    self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+	self.pan.delegate = self;
+	[self.view addGestureRecognizer:self.pan];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,8 +80,6 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
 
 -(void)loadData
 {
-    
-    
     // get week day names array
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     self.arrWeekDay = [dateFormatter shortWeekdaySymbols];
@@ -220,6 +229,46 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
         view = monthHeader;
     }
     return view;
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gesture {
+    if (gesture.numberOfTouches > 0) {
+        NSLog(@"pan inside");
+        //перетягиваем нажатием
+        CGRect monthFrame = self.view.frame;
+        monthFrame.origin.x = 0;
+        monthFrame.origin.y = [gesture locationOfTouch:0 inView:self.view].y - self.view.frame.size.height;
+        self.view.frame = monthFrame;
+    }
+    else
+    {
+        CGRect monthFrame = self.view.frame;
+        if (monthFrame.origin.y< - self.view.frame.size.height +self.view.frame.size.height/2 )
+        {
+            monthFrame.origin.y = -self.view.frame.size.height;
+            [UIView animateWithDuration:1.0 animations:^{
+                self.view.frame = monthFrame;
+            }];
+        }
+        else
+        {
+            monthFrame.origin.y = 0;
+            [UIView animateWithDuration:1.0 animations:^{
+                self.view.frame = monthFrame;
+            }];
+        }
+        
+        
+        
+        
+    }
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if([touch locationInView:self.view].y > self.view.frame.size.height-50)
+        return YES;
+	return NO;
 }
 
 @end

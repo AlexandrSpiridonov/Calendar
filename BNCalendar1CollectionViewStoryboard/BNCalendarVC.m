@@ -52,6 +52,7 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
 @property (nonatomic, strong) NSTimer *scrollingTimer;
 @property (nonatomic, strong) NSTimer *saveTimer;
 @property (nonatomic, strong) BNMonthCalendarVC *monthCalendar;
+@property (nonatomic,strong) UIPanGestureRecognizer *pan;
 @end
 
 @implementation BNCalendarVC
@@ -120,10 +121,12 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
     [self.view addSubview:self.monthCalendar.view];
     CGRect monthFrame = self.monthCalendar.view.frame;
     monthFrame.origin.x = 0;
-    monthFrame.origin.y = 0;
-    //monthFrame.size.height = 320;
-    // monthFrame.size.width = 320;
+    monthFrame.origin.y = -self.view.frame.size.height;
     self.monthCalendar.view.frame = monthFrame;
+    ///перетаскивание с верху
+    self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+	self.pan.delegate = self;
+	[self.collectionView addGestureRecognizer:self.pan];
 }
 
 - (void)didReceiveMemoryWarning
@@ -480,6 +483,8 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
 {
     return NO;
 }
+
+#pragma mark - Gesture recognizer
 
 - (void)longPress:(UILongPressGestureRecognizer *)gesture
 {
@@ -897,6 +902,225 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
     
 }
 
+
+
+
+- (void)scrollTableWithCell:(NSTimer *)timer {
+    UILongPressGestureRecognizer *gesture = [timer.userInfo objectForKey:@"gesture"];
+    CGPoint location  = [gesture locationInView:self.collectionView];
+    
+    CGPoint currentOffset = self.collectionView.contentOffset;
+    CGPoint newOffset = CGPointMake(currentOffset.x + self.scrollRateX, currentOffset.y + self.scrollRateY);
+    if (newOffset.y < -self.collectionView.contentInset.top)
+    {
+        newOffset.y = -self.collectionView.contentInset.top;
+    }
+    else if (self.collectionView.contentSize.height < self.collectionView.frame.size.height)
+    {
+        newOffset = currentOffset;
+    }
+    else if (newOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.size.height)
+    {
+        newOffset.y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
+    }
+    
+    if (newOffset.x < -self.collectionView.contentInset.left)
+    {
+        newOffset.x = -self.collectionView.contentInset.left;
+    }
+    else if (self.collectionView.contentSize.width < self.collectionView.frame.size.width)
+    {
+        newOffset = currentOffset;
+    }
+    else if (newOffset.x > self.collectionView.contentSize.width - self.collectionView.frame.size.width)
+    {
+        newOffset.x = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
+    }
+    
+    [self.collectionView setContentOffset:newOffset];
+    
+    if (location.y >= 0 && location.y <= self.collectionView.contentSize.height + 50) {
+        mockView.center = CGPointMake(location.x, location.y);
+    }
+    //[self updateCurrentLocation:gesture];
+}
+
+- (void)scrollTopTableWithCell:(NSTimer *)timer {
+    UILongPressGestureRecognizer *gesture = [timer.userInfo objectForKey:@"gesture"];
+    CGPoint location  = [gesture locationInView:self.collectionView];
+    
+    CGPoint currentOffset = self.collectionView.contentOffset;
+    CGPoint newOffset = CGPointMake(currentOffset.x + self.scrollRateX, currentOffset.y + self.scrollRateY);
+    if (newOffset.y < -self.collectionView.contentInset.top)
+    {
+        newOffset.y = -self.collectionView.contentInset.top;
+    }
+    else if (self.collectionView.contentSize.height < self.collectionView.frame.size.height)
+    {
+        newOffset = currentOffset;
+    }
+    else if (newOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.size.height)
+    {
+        newOffset.y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
+    }
+    
+    if (newOffset.x < -self.collectionView.contentInset.left)
+    {
+        newOffset.x = -self.collectionView.contentInset.left;
+    }
+    else if (self.collectionView.contentSize.width < self.collectionView.frame.size.width)
+    {
+        newOffset = currentOffset;
+    }
+    else if (newOffset.x > self.collectionView.contentSize.width - self.collectionView.frame.size.width)
+    {
+        newOffset.x = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
+    }
+    
+    [self.collectionView setContentOffset:newOffset];
+    
+    if (location.y >= 0 && location.y <= self.collectionView.contentSize.height + 50) {
+        NSDate * start =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y];
+        NSDate * end =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
+        NSDateFormatter *dateFormatter1 = [NSDateFormatter new];
+        dateFormatter1.dateFormat = @"YYYY-MM-dd HH:mm";
+        NSDateFormatter *dateFormatter2 = [NSDateFormatter new];
+        dateFormatter2.dateFormat = @"HH:mm";
+        mockView.time.text = [NSString stringWithFormat:@"%@ - %@",[dateFormatter1 stringFromDate:start], [dateFormatter2 stringFromDate:end]];
+        mockView.message.text = orignItem.title;
+        int ToLength = [self.collectionViewLayout toLengthStartFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y EndFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
+        NSString * toTime;
+        if ( ToLength < 60)      toTime = [NSString stringWithFormat:@"%d min",ToLength];
+        else {
+            int Hours = ToLength%60;
+            if (Hours != 0 ) toTime = [NSString stringWithFormat:@"%d h %d min",ToLength/60, Hours];
+            else             toTime = [NSString stringWithFormat:@"%d h",ToLength/60];
+        }
+        mockView.toLength.text = toTime;
+        CGRect mockFrame = mockView.frame;
+        CGFloat addY = location.y-mockFrame.origin.y;
+        mockFrame.origin.y = mockFrame.origin.y + addY;
+        mockFrame.size.height = mockFrame.size.height - addY;
+        mockView.frame = mockFrame;
+        [mockView updateConstraintsIfNeeded];
+    }
+    //[self updateCurrentLocation:gesture];
+}
+
+- (void)scrollBottomTableWithCell:(NSTimer *)timer {
+    UILongPressGestureRecognizer *gesture = [timer.userInfo objectForKey:@"gesture"];
+    CGPoint location  = [gesture locationInView:self.collectionView];
+    
+    CGPoint currentOffset = self.collectionView.contentOffset;
+    CGPoint newOffset = CGPointMake(currentOffset.x + self.scrollRateX, currentOffset.y + self.scrollRateY);
+    if (newOffset.y < -self.collectionView.contentInset.top)
+    {
+        newOffset.y = -self.collectionView.contentInset.top;
+    }
+    else if (self.collectionView.contentSize.height < self.collectionView.frame.size.height)
+    {
+        newOffset = currentOffset;
+    }
+    else if (newOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.size.height)
+    {
+        newOffset.y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
+    }
+    
+    if (newOffset.x < -self.collectionView.contentInset.left)
+    {
+        newOffset.x = -self.collectionView.contentInset.left;
+    }
+    else if (self.collectionView.contentSize.width < self.collectionView.frame.size.width)
+    {
+        newOffset = currentOffset;
+    }
+    else if (newOffset.x > self.collectionView.contentSize.width - self.collectionView.frame.size.width)
+    {
+        newOffset.x = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
+    }
+    
+    [self.collectionView setContentOffset:newOffset];
+    
+    if (location.y >= 0 && location.y <= self.collectionView.contentSize.height + 50) {
+        NSDate * start =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y];
+        NSDate * end =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
+        NSDateFormatter *dateFormatter1 = [NSDateFormatter new];
+        dateFormatter1.dateFormat = @"YYYY-MM-dd HH:mm";
+        NSDateFormatter *dateFormatter2 = [NSDateFormatter new];
+        dateFormatter2.dateFormat = @"HH:mm";
+        mockView.time.text = [NSString stringWithFormat:@"%@ - %@",[dateFormatter1 stringFromDate:start], [dateFormatter2 stringFromDate:end]];
+        mockView.message.text = orignItem.title;
+        int ToLength = [self.collectionViewLayout toLengthStartFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y EndFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
+        NSString * toTime;
+        if ( ToLength < 60)      toTime = [NSString stringWithFormat:@"%d min",ToLength];
+        else {
+            int Hours = ToLength%60;
+            if (Hours != 0 ) toTime = [NSString stringWithFormat:@"%d h %d min",ToLength/60, Hours];
+            else             toTime = [NSString stringWithFormat:@"%d h",ToLength/60];
+        }
+        mockView.toLength.text = toTime;
+        CGRect mockFrame = mockView.frame;
+        CGFloat addY = location.y-(mockFrame.origin.y+mockFrame.size.height);
+        //mockFrame.origin.y = mockFrame.origin.y + addY;
+        mockFrame.size.height = mockFrame.size.height + addY;
+        mockView.frame = mockFrame;
+        [mockView updateConstraintsIfNeeded];
+    }
+    //[self updateCurrentLocation:gesture];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGPoint contentOffset = scrollView.contentOffset;
+    CGFloat contentOffsetX = contentOffset.x;
+    CGFloat sectionWidth = (self.collectionViewLayout.sectionMargin.left + self.collectionViewLayout.sectionWidth + self.collectionViewLayout.sectionMargin.right);
+    int section = lrintf(contentOffsetX/sectionWidth);
+    contentOffsetX = sectionWidth * section;
+    contentOffset.x = contentOffsetX;
+    [self.collectionView setContentOffset:contentOffset animated:YES];
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gesture {
+    if (gesture.numberOfTouches > 0) {
+        NSLog(@"pan");
+        //перетягиваем нажатием
+        CGRect monthFrame = self.monthCalendar.view.frame;
+        monthFrame.origin.x = 0;
+        monthFrame.origin.y = -self.collectionView.frame.size.height+ [gesture locationOfTouch:0 inView:self.collectionView].y;
+        self.monthCalendar.view.frame = monthFrame;
+    }
+    else
+    {
+        CGRect monthFrame = self.monthCalendar.view.frame;
+        if (monthFrame.origin.y< - self.collectionView.frame.size.height +self.collectionView.frame.size.height/2 )
+        {
+            monthFrame.origin.y = -self.collectionView.frame.size.height;
+            [UIView animateWithDuration:1.0 animations:^{
+                self.monthCalendar.view.frame = monthFrame;
+            }];
+        }
+        else
+        {
+            monthFrame.origin.y = 0;
+            [UIView animateWithDuration:1.0 animations:^{
+                self.monthCalendar.view.frame = monthFrame;
+            }];
+        }
+
+        
+        
+
+    }
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    if([touch locationInView:self.collectionView].y < 50)
+        return YES;
+	return NO;
+}
+@end
+
 /*
  - (void)longPress:(UILongPressGestureRecognizer *)gesture
  {
@@ -1081,181 +1305,3 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
  
  }
  */
-
-
-- (void)scrollTableWithCell:(NSTimer *)timer {
-    UILongPressGestureRecognizer *gesture = [timer.userInfo objectForKey:@"gesture"];
-    CGPoint location  = [gesture locationInView:self.collectionView];
-    
-    CGPoint currentOffset = self.collectionView.contentOffset;
-    CGPoint newOffset = CGPointMake(currentOffset.x + self.scrollRateX, currentOffset.y + self.scrollRateY);
-    if (newOffset.y < -self.collectionView.contentInset.top)
-    {
-        newOffset.y = -self.collectionView.contentInset.top;
-    }
-    else if (self.collectionView.contentSize.height < self.collectionView.frame.size.height)
-    {
-        newOffset = currentOffset;
-    }
-    else if (newOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.size.height)
-    {
-        newOffset.y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
-    }
-    
-    if (newOffset.x < -self.collectionView.contentInset.left)
-    {
-        newOffset.x = -self.collectionView.contentInset.left;
-    }
-    else if (self.collectionView.contentSize.width < self.collectionView.frame.size.width)
-    {
-        newOffset = currentOffset;
-    }
-    else if (newOffset.x > self.collectionView.contentSize.width - self.collectionView.frame.size.width)
-    {
-        newOffset.x = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
-    }
-    
-    [self.collectionView setContentOffset:newOffset];
-    
-    if (location.y >= 0 && location.y <= self.collectionView.contentSize.height + 50) {
-        mockView.center = CGPointMake(location.x, location.y);
-    }
-    //[self updateCurrentLocation:gesture];
-}
-
-- (void)scrollTopTableWithCell:(NSTimer *)timer {
-    UILongPressGestureRecognizer *gesture = [timer.userInfo objectForKey:@"gesture"];
-    CGPoint location  = [gesture locationInView:self.collectionView];
-    
-    CGPoint currentOffset = self.collectionView.contentOffset;
-    CGPoint newOffset = CGPointMake(currentOffset.x + self.scrollRateX, currentOffset.y + self.scrollRateY);
-    if (newOffset.y < -self.collectionView.contentInset.top)
-    {
-        newOffset.y = -self.collectionView.contentInset.top;
-    }
-    else if (self.collectionView.contentSize.height < self.collectionView.frame.size.height)
-    {
-        newOffset = currentOffset;
-    }
-    else if (newOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.size.height)
-    {
-        newOffset.y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
-    }
-    
-    if (newOffset.x < -self.collectionView.contentInset.left)
-    {
-        newOffset.x = -self.collectionView.contentInset.left;
-    }
-    else if (self.collectionView.contentSize.width < self.collectionView.frame.size.width)
-    {
-        newOffset = currentOffset;
-    }
-    else if (newOffset.x > self.collectionView.contentSize.width - self.collectionView.frame.size.width)
-    {
-        newOffset.x = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
-    }
-    
-    [self.collectionView setContentOffset:newOffset];
-    
-    if (location.y >= 0 && location.y <= self.collectionView.contentSize.height + 50) {
-        NSDate * start =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y];
-        NSDate * end =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
-        NSDateFormatter *dateFormatter1 = [NSDateFormatter new];
-        dateFormatter1.dateFormat = @"YYYY-MM-dd HH:mm";
-        NSDateFormatter *dateFormatter2 = [NSDateFormatter new];
-        dateFormatter2.dateFormat = @"HH:mm";
-        mockView.time.text = [NSString stringWithFormat:@"%@ - %@",[dateFormatter1 stringFromDate:start], [dateFormatter2 stringFromDate:end]];
-        mockView.message.text = orignItem.title;
-        int ToLength = [self.collectionViewLayout toLengthStartFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y EndFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
-        NSString * toTime;
-        if ( ToLength < 60)      toTime = [NSString stringWithFormat:@"%d min",ToLength];
-        else {
-            int Hours = ToLength%60;
-            if (Hours != 0 ) toTime = [NSString stringWithFormat:@"%d h %d min",ToLength/60, Hours];
-            else             toTime = [NSString stringWithFormat:@"%d h",ToLength/60];
-        }
-        mockView.toLength.text = toTime;
-        CGRect mockFrame = mockView.frame;
-        CGFloat addY = location.y-mockFrame.origin.y;
-        mockFrame.origin.y = mockFrame.origin.y + addY;
-        mockFrame.size.height = mockFrame.size.height - addY;
-        mockView.frame = mockFrame;
-        [mockView updateConstraintsIfNeeded];
-    }
-    //[self updateCurrentLocation:gesture];
-}
-
-- (void)scrollBottomTableWithCell:(NSTimer *)timer {
-    UILongPressGestureRecognizer *gesture = [timer.userInfo objectForKey:@"gesture"];
-    CGPoint location  = [gesture locationInView:self.collectionView];
-    
-    CGPoint currentOffset = self.collectionView.contentOffset;
-    CGPoint newOffset = CGPointMake(currentOffset.x + self.scrollRateX, currentOffset.y + self.scrollRateY);
-    if (newOffset.y < -self.collectionView.contentInset.top)
-    {
-        newOffset.y = -self.collectionView.contentInset.top;
-    }
-    else if (self.collectionView.contentSize.height < self.collectionView.frame.size.height)
-    {
-        newOffset = currentOffset;
-    }
-    else if (newOffset.y > self.collectionView.contentSize.height - self.collectionView.frame.size.height)
-    {
-        newOffset.y = self.collectionView.contentSize.height - self.collectionView.frame.size.height;
-    }
-    
-    if (newOffset.x < -self.collectionView.contentInset.left)
-    {
-        newOffset.x = -self.collectionView.contentInset.left;
-    }
-    else if (self.collectionView.contentSize.width < self.collectionView.frame.size.width)
-    {
-        newOffset = currentOffset;
-    }
-    else if (newOffset.x > self.collectionView.contentSize.width - self.collectionView.frame.size.width)
-    {
-        newOffset.x = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
-    }
-    
-    [self.collectionView setContentOffset:newOffset];
-    
-    if (location.y >= 0 && location.y <= self.collectionView.contentSize.height + 50) {
-        NSDate * start =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y];
-        NSDate * end =  [self.collectionViewLayout timeDateComponentsFloatX:mockView.frame.origin.x+(mockView.frame.size.width/2) FloatY: mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
-        NSDateFormatter *dateFormatter1 = [NSDateFormatter new];
-        dateFormatter1.dateFormat = @"YYYY-MM-dd HH:mm";
-        NSDateFormatter *dateFormatter2 = [NSDateFormatter new];
-        dateFormatter2.dateFormat = @"HH:mm";
-        mockView.time.text = [NSString stringWithFormat:@"%@ - %@",[dateFormatter1 stringFromDate:start], [dateFormatter2 stringFromDate:end]];
-        mockView.message.text = orignItem.title;
-        int ToLength = [self.collectionViewLayout toLengthStartFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y EndFloatY:mockView.frame.origin.y+mockView.view.frame.origin.y+mockView.view.frame.size.height];
-        NSString * toTime;
-        if ( ToLength < 60)      toTime = [NSString stringWithFormat:@"%d min",ToLength];
-        else {
-            int Hours = ToLength%60;
-            if (Hours != 0 ) toTime = [NSString stringWithFormat:@"%d h %d min",ToLength/60, Hours];
-            else             toTime = [NSString stringWithFormat:@"%d h",ToLength/60];
-        }
-        mockView.toLength.text = toTime;
-        CGRect mockFrame = mockView.frame;
-        CGFloat addY = location.y-(mockFrame.origin.y+mockFrame.size.height);
-        //mockFrame.origin.y = mockFrame.origin.y + addY;
-        mockFrame.size.height = mockFrame.size.height + addY;
-        mockView.frame = mockFrame;
-        [mockView updateConstraintsIfNeeded];
-    }
-    //[self updateCurrentLocation:gesture];
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    CGPoint contentOffset = scrollView.contentOffset;
-    CGFloat contentOffsetX = contentOffset.x;
-    CGFloat sectionWidth = (self.collectionViewLayout.sectionMargin.left + self.collectionViewLayout.sectionWidth + self.collectionViewLayout.sectionMargin.right);
-    int section = lrintf(contentOffsetX/sectionWidth);
-    contentOffsetX = sectionWidth * section;
-    contentOffset.x = contentOffsetX;
-    [self.collectionView setContentOffset:contentOffset animated:YES];
-}
-
-@end

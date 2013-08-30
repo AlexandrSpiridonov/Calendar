@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNMonthCalendarVC : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate>
+@interface BNMonthCalendarVC : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
 @end
