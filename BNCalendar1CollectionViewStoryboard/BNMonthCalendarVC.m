@@ -68,6 +68,23 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
 	self.pan.delegate = self;
 	[self.view addGestureRecognizer:self.pan];
+    
+    if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+    {
+        CGRect monthFrame = self.view.frame;
+        monthFrame.size.width = 480;
+        monthFrame.size.height = 320;
+        self.view.frame = monthFrame;
+        
+    }
+    else
+    {
+        CGRect monthFrame = self.view.frame;
+        monthFrame.size.width = 320;
+        monthFrame.size.height = 320;
+        self.view.frame = monthFrame;
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -233,11 +250,12 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
 
 - (void)pan:(UIPanGestureRecognizer *)gesture {
     if (gesture.numberOfTouches > 0) {
-        NSLog(@"pan inside");
+        CGPoint location  = [gesture locationInView:self.view.superview ];
+        NSLog(@"pan inside Y = %f", location.y);
         //перетягиваем нажатием
         CGRect monthFrame = self.view.frame;
         monthFrame.origin.x = 0;
-        monthFrame.origin.y = [gesture locationOfTouch:0 inView:self.view].y - self.view.frame.size.height;
+        monthFrame.origin.y = location.y - self.view.frame.size.height;
         self.view.frame = monthFrame;
     }
     else
@@ -246,14 +264,14 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
         if (monthFrame.origin.y< - self.view.frame.size.height +self.view.frame.size.height/2 )
         {
             monthFrame.origin.y = -self.view.frame.size.height;
-            [UIView animateWithDuration:1.0 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 self.view.frame = monthFrame;
             }];
         }
         else
         {
             monthFrame.origin.y = 0;
-            [UIView animateWithDuration:1.0 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 self.view.frame = monthFrame;
             }];
         }
@@ -269,6 +287,29 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     if([touch locationInView:self.view].y > self.view.frame.size.height-50)
         return YES;
 	return NO;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    // Then your code...
+    
+    if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
+    {
+        CGRect monthFrame = self.view.frame;
+        monthFrame.size.width = 480;
+        monthFrame.size.height = 320;
+         self.view.frame = monthFrame;
+        
+    }
+    else
+    {
+        CGRect monthFrame = self.view.frame;
+        monthFrame.size.width = 320;
+        monthFrame.size.height = 320;
+         self.view.frame = monthFrame;
+    }
+
 }
 
 @end

@@ -29,6 +29,7 @@
                             <constraint firstItem="ZPz-tp-3a9" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="QR2-rn-sbu"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="ZPz-tp-3a9" id="gdc-gh-Iwd"/>
                         <outlet property="collectionViewLayout" destination="sJD-7R-INk" id="baF-Hn-nRa"/>

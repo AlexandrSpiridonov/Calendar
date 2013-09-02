@@ -52,7 +52,6 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
 @property (nonatomic, strong) NSTimer *scrollingTimer;
 @property (nonatomic, strong) NSTimer *saveTimer;
 @property (nonatomic, strong) BNMonthCalendarVC *monthCalendar;
-@property (nonatomic,strong) UIPanGestureRecognizer *pan;
 @end
 
 @implementation BNCalendarVC
@@ -119,14 +118,15 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
     self.monthCalendar = [mainSB instantiateViewControllerWithIdentifier:@"BNMonthCalendarVC"];
     
     [self.view addSubview:self.monthCalendar.view];
+    [self addChildViewController:(UIViewController*)self.monthCalendar];
     CGRect monthFrame = self.monthCalendar.view.frame;
     monthFrame.origin.x = 0;
     monthFrame.origin.y = -self.view.frame.size.height;
     self.monthCalendar.view.frame = monthFrame;
     ///перетаскивание с верху
-    self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-	self.pan.delegate = self;
-	[self.collectionView addGestureRecognizer:self.pan];
+   // self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+	//self.pan.delegate = self;
+   // [self.collectionView addGestureRecognizer:self.pan];
 }
 
 - (void)didReceiveMemoryWarning
@@ -357,6 +357,9 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
                 view.backgroundColor = [UIColor colorWithRed:0.5 green:0 blue:1 alpha:[arr[i] floatValue]/max];
         }
         //[dayColumnHeader setNeedsLayout];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        pan.delegate = self;
+        [dayColumnHeader.button addGestureRecognizer:pan];
         view = dayColumnHeader;
     }
     else if ([kind isEqualToString:BNCollectionElementKindTimeRowHeader]) {
@@ -1082,27 +1085,27 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
 
 - (void)pan:(UIPanGestureRecognizer *)gesture {
     if (gesture.numberOfTouches > 0) {
-        NSLog(@"pan");
+        //NSLog(@"pan y %f",[gesture locationOfTouch:0 inView:self.view].y);
         //перетягиваем нажатием
         CGRect monthFrame = self.monthCalendar.view.frame;
         monthFrame.origin.x = 0;
-        monthFrame.origin.y = -self.collectionView.frame.size.height+ [gesture locationOfTouch:0 inView:self.collectionView].y;
+        monthFrame.origin.y = -self.monthCalendar.view.frame.size.height+ [gesture locationOfTouch:0 inView:self.view].y;
         self.monthCalendar.view.frame = monthFrame;
     }
     else
     {
         CGRect monthFrame = self.monthCalendar.view.frame;
-        if (monthFrame.origin.y< - self.collectionView.frame.size.height +self.collectionView.frame.size.height/2 )
+        if (monthFrame.origin.y< - self.view.frame.size.height +self.view.frame.size.height/2 )
         {
-            monthFrame.origin.y = -self.collectionView.frame.size.height;
-            [UIView animateWithDuration:1.0 animations:^{
+            monthFrame.origin.y = -self.view.frame.size.height;
+            [UIView animateWithDuration:0.3 animations:^{
                 self.monthCalendar.view.frame = monthFrame;
             }];
         }
         else
         {
             monthFrame.origin.y = 0;
-            [UIView animateWithDuration:1.0 animations:^{
+            [UIView animateWithDuration:0.3 animations:^{
                 self.monthCalendar.view.frame = monthFrame;
             }];
         }
@@ -1113,195 +1116,13 @@ NSString * const BNCurrentTimeIndicatorReuseIdentifier = @"BNCurrentTimeIndicato
     }
 }
 
+/*
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     
-    if([touch locationInView:self.collectionView].y < 50)
+    if([touch locationInView:self.view].y < 50)
         return YES;
 	return NO;
 }
-@end
-
-/*
- - (void)longPress:(UILongPressGestureRecognizer *)gesture
- {
- switch (gesture.state) {
- case UIGestureRecognizerStateBegan:
- {
- if(!mockView)
- {
- [mockView removeFromSuperview];
- mockView = nil;
- }
- // измеение data source (тут надо сделать фетчу в коре дата)
- orignCell = (BNCalendarCell *)[gesture view];
- NSIndexPath *indexPath = [self.collectionView indexPathForCell:orignCell];
- 
- CGRect tempFrame = orignCell.frame;
- tempFrame.size.width = self.collectionViewLayout.sectionWidth - self.collectionViewLayout.cellMargin.left - self.collectionViewLayout.cellMargin.right;
- mockView = [[BNCalendarDraggingView alloc] initWithFrame:tempFrame];
- 
- 
- NSArray * arr = self.dict[self.dictSection[indexPath.section]];
- BNCalendarItem * origItem = arr[indexPath.item];
- 
- 
- NSDateFormatter *dateFormatter1 = [NSDateFormatter new];
- dateFormatter1.dateFormat = @"YYYY-MM-dd HH:mm";
- NSDateFormatter *dateFormatter2 = [NSDateFormatter new];
- dateFormatter2.dateFormat = @"HH:mm";
- mockView.time.text = [NSString stringWithFormat:@"%@ - %@",[dateFormatter1 stringFromDate:origItem.start], [dateFormatter2 stringFromDate:origItem.end]];
- mockView.message.text = orignCell.message.text;
- 
- 
- int ToLength = [self.collectionViewLayout toLengthStartFloatY:mockView.frame.origin.y EndFloatY:mockView.frame.origin.y+mockView.frame.size.height];
- NSString * toTime;
- if ( ToLength < 60)      toTime = [NSString stringWithFormat:@"%d min",ToLength];
- else {
- int Hours = ToLength%60;
- if (Hours != 0 ) toTime = [NSString stringWithFormat:@"%d h %d min",ToLength/60, Hours];
- else             toTime = [NSString stringWithFormat:@"%d h",ToLength/60];
- }
- mockView.toLength.text = toTime;
- 
- 
- [mockView updateConstraintsIfNeeded];
- 
- if( [orignCell.noteType intValue] == 0 )
- mockView.noteType = [NSNumber numberWithInt: 2];
- else
- {
- if([item.start compare:[NSDate date]] == NSOrderedAscending)
- {
- mockView.noteType = [NSNumber numberWithInt: 2];
- 
- }
- else
- mockView.noteType = [NSNumber numberWithInt: 1];
- }
- // [mockView needsUpdateConstraints];
- 
- [self.collectionView addSubview:mockView];
- [UIView
- animateWithDuration:0.3
- animations:^{
- mockView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
- }
- completion:^(BOOL finished)
- {
- mockView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
- }];
- NSMutableArray * arrLast = [self.dict[self.dictSection[indexPath.section]] mutableCopy];
- if(!arrLast) arrLast = [NSMutableArray array];
- item = arrLast[indexPath.item];
- [arrLast removeObjectAtIndex: indexPath.item];
- [self.collectionViewLayout deleteLayoutAttributeItemsInSection:indexPath.section];
- [self.dict setObject: arrLast forKey:self.dictSection[indexPath.section]];
- [self.collectionView reloadData];
- [self.collectionViewLayout updateLayoutAttributeItemsInSection: indexPath.section];
- 
- 
- // enable scrolling for cell
- NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:gesture forKey:@"gesture"];
- self.scrollingTimer = [NSTimer timerWithTimeInterval:1/8 target:self selector:@selector(scrollTableWithCell:) userInfo:userInfo repeats:YES];
- [[NSRunLoop mainRunLoop] addTimer:self.scrollingTimer forMode:NSDefaultRunLoopMode];
- 
- } break;
- // dragging
- case UIGestureRecognizerStateChanged:{
- CGPoint location = [gesture locationInView:self.collectionView];
- NSDate * start =  [self.collectionViewLayout timeDateComponentsFloatX:(location.x-mockView.frame.size.width/2) FloatY:(location.y-mockView.frame.size.height/2)];
- NSDate * end =  [self.collectionViewLayout timeDateComponentsFloatX:(location.x-mockView.frame.size.width/2) FloatY:(location.y+mockView.frame.size.height/2)];
- NSDateFormatter *dateFormatter1 = [NSDateFormatter new];
- dateFormatter1.dateFormat = @"YYYY-MM-dd HH:mm";
- NSDateFormatter *dateFormatter2 = [NSDateFormatter new];
- dateFormatter2.dateFormat = @"HH:mm";
- mockView.time.text = [NSString stringWithFormat:@"%@ - %@",[dateFormatter1 stringFromDate:start], [dateFormatter2 stringFromDate:end]];
- mockView.message.text = orignCell.message.text;
- int ToLength = [self.collectionViewLayout toLengthStartFloatY:mockView.frame.origin.y EndFloatY:mockView.frame.origin.y+mockView.frame.size.height];
- NSString * toTime;
- if ( ToLength < 60)      toTime = [NSString stringWithFormat:@"%d min",ToLength];
- else {
- int Hours = ToLength%60;
- if (Hours != 0 ) toTime = [NSString stringWithFormat:@"%d h %d min",ToLength/60, Hours];
- else             toTime = [NSString stringWithFormat:@"%d h",ToLength/60];
- }
- mockView.toLength.text = toTime;
- [mockView updateConstraintsIfNeeded];
- mockView.center = CGPointMake(location.x, location.y);
- 
- //scrolling
- CGRect rect = self.collectionView.bounds;
- // adjust rect for content inset as we will use it below for calculating scroll zones
- rect.size.height -= self.collectionView.contentInset.top;
- rect.size.width -= self.collectionView.contentInset.left;
- 
- // tell us if we should scroll and which direction
- CGFloat scrollZoneHeight = rect.size.height / 6;
- CGFloat scrollZoneWidth = rect.size.width / 6;
- CGFloat bottomScrollBeginning = self.collectionView.contentOffset.y + self.collectionView.contentInset.top + rect.size.height - scrollZoneHeight;
- CGFloat topScrollBeginning = self.collectionView.contentOffset.y + self.collectionView.contentInset.top  + scrollZoneHeight;
- CGFloat leftScrollBeginning = self.collectionView.contentOffset.x + self.collectionView.contentInset.left  + scrollZoneWidth;
- CGFloat rightScrollBeginning = self.collectionView.contentOffset.x + self.collectionView.contentInset.left + rect.size.width - scrollZoneWidth;
- 
- // we're in the bottom zone
- if (location.y >= bottomScrollBeginning) {
- self.scrollRateY = (location.y - bottomScrollBeginning) / scrollZoneHeight;
- }
- // we're in the top zone
- else if (location.y <= topScrollBeginning) {
- self.scrollRateY = (location.y - topScrollBeginning) / scrollZoneHeight;
- }
- else {
- self.scrollRateY = 0;
- }
- if (location.x >= rightScrollBeginning) {
- self.scrollRateX = (location.x - rightScrollBeginning) / scrollZoneWidth;
- }
- // we're in the left zone
- else if (location.x <= leftScrollBeginning) {
- self.scrollRateX = (location.x - leftScrollBeginning) / scrollZoneWidth;
- }
- else {
- self.scrollRateX = 0;
- }
- 
- } break;
- // dropped
- case UIGestureRecognizerStateEnded:
- {
- [self.scrollingTimer invalidate];
- self.scrollingTimer = nil;
- self.scrollRateY = 0;
- self.scrollRateX = 0;
- 
- // NSIndexPath *indexPath = [self.collectionView indexPathForCell:orignCell];
- CGPoint location = [gesture locationInView:self.collectionView];
- NSDate * start =  [self.collectionViewLayout timeDateComponentsFloatX:(location.x-mockView.frame.size.width/2) FloatY:(location.y-mockView.frame.size.height/2)];
- NSDate * end =  [self.collectionViewLayout timeDateComponentsFloatX:(location.x-mockView.frame.size.width/2) FloatY:(location.y+mockView.frame.size.height/2)];
- NSDateFormatter *dateFormatter = [NSDateFormatter new];
- NSInteger section = [self.collectionViewLayout sectionToFloatX:(location.x-mockView.frame.size.width/2)];
- [mockView removeFromSuperview];
- mockView = nil;
- 
- 
- dateFormatter.dateFormat = @"YYYY-MM-dd";
- item.start = start;
- item.end = end;
- NSString * key = [dateFormatter stringFromDate:start];
- [self.collectionView reloadData];
- NSMutableArray * arrNew = [self.dict[key] mutableCopy];
- if(!arrNew) arrNew = [NSMutableArray array];
- [arrNew addObject: item];
- [self.collectionViewLayout deleteLayoutAttributeItemsInSection:section];
- [self.dict setObject: arrNew forKey:key];
- [self.collectionView reloadData];
- [self.collectionViewLayout updateLayoutAttributeItemsInSection:section];
- 
- mockCell = nil;
- item = nil;
- }break;
- default: break;
- }
- 
- }
  */
+
+@end
