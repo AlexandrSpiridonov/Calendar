@@ -262,7 +262,7 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
 - (void)pan:(UIPanGestureRecognizer *)gesture {
     if (gesture.numberOfTouches > 0) {
         CGPoint location  = [gesture locationInView:self.view.superview ];
-        NSLog(@"pan inside Y = %f", location.y);
+       // NSLog(@"pan inside Y = %f", location.y);
         //перетягиваем нажатием
         CGRect monthFrame = self.view.frame;
         monthFrame.origin.x = 0;
