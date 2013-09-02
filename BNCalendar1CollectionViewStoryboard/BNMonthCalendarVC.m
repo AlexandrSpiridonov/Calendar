@@ -58,33 +58,44 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     [dateComponents setMonth: (monthNow+6)];
     self.toDate = [self.calendar dateFromComponents:dateComponents];
     [self loadData];
-    
-    CGRect monthFrame = self.view.frame;
-    monthFrame.origin.x = 0;
-    monthFrame.origin.y = -self.view.frame.size.height;
-    self.view.frame = monthFrame;
-    
+
     ///перетаскивание с верху
     self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
 	self.pan.delegate = self;
 	[self.view addGestureRecognizer:self.pan];
     
+    CGRect monthFrame = self.view.frame;
     if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
     {
-        CGRect monthFrame = self.view.frame;
-        monthFrame.size.width = 480;
-        monthFrame.size.height = 320;
-        self.view.frame = monthFrame;
+        if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone))
+        {
+            monthFrame.size.width = 480;
+            monthFrame.size.height = 320;
+        }
+        else
+        {
+            monthFrame.size.width = 1024;
+            monthFrame.size.height = 768;
+        }
         
     }
     else
     {
-        CGRect monthFrame = self.view.frame;
-        monthFrame.size.width = 320;
-        monthFrame.size.height = 320;
-        self.view.frame = monthFrame;
+        if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone))
+        {
+            monthFrame.size.width = 320;
+            monthFrame.size.height = 320;
+        }
+        else
+        {
+            monthFrame.size.width = 768;
+            monthFrame.size.height = 768;
+        }
     }
-
+    
+    monthFrame.origin.x = 0;
+    monthFrame.origin.y = -self.view.frame.size.height;
+    self.view.frame = monthFrame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -294,21 +305,36 @@ NSString * const BNMonthHeaderReuseIdentifier = @"BNMonthHeaderReuseIdentifier";
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     // Then your code...
     
+
+        CGRect monthFrame = self.view.frame;
     if(self.interfaceOrientation == UIDeviceOrientationLandscapeRight || self.interfaceOrientation == UIDeviceOrientationLandscapeLeft)
     {
-        CGRect monthFrame = self.view.frame;
-        monthFrame.size.width = 480;
-        monthFrame.size.height = 320;
-         self.view.frame = monthFrame;
+        if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone))
+        {
+            monthFrame.size.width = 480;
+            monthFrame.size.height = 320;
+        }
+        else
+        {
+            monthFrame.size.width = 1024;
+            monthFrame.size.height = 768;
+        }
         
     }
     else
     {
-        CGRect monthFrame = self.view.frame;
-        monthFrame.size.width = 320;
-        monthFrame.size.height = 320;
-         self.view.frame = monthFrame;
+        if((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone))
+        {
+            monthFrame.size.width = 320;
+            monthFrame.size.height = 320;
+        }
+        else
+        {
+            monthFrame.size.width = 768;
+            monthFrame.size.height = 768;
+        }
     }
+    self.view.frame = monthFrame;
 
 }
 
